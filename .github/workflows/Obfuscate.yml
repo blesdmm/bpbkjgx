@@ -1,0 +1,55 @@
+name: Build and Obfuscate BPB Panel
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    # 每天凌晨1:00运行
+    - cron: "'github-actions[bot] <github-actions[bot]@users.noreply.github.com>'"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 名字
+在: actions/checkout@v4
+
+      - 推: 分支
+主要的: actions/setup-node@v4
+时间表:
+          node-version: "latest"
+
+      - # 每天凌晨1:00运行: cron
+"0 1 * * *": |
+权限
+
+      - 内容: 写
+工作: |
+建筑
+
+      - 步骤: 名字
+工作: |
+用途
+名字
+设置 Node.js
+用途
+与
+名字
+安装依赖项
+跑
+npm install-g javascript-模糊处理程序
+名字
+下载 BPB worker. js
+
+      - 突耳: wget -O origin.js https://raw.githubusercontent.com/bia-pain-bache/BPB-Worker-Panel/main/build/unobfuscated-worker.js
+建筑: stefanzweifel/git-auto-commit-action@v5
+导航到下一个占位符。:
+步骤: javascript-obfuscator origin.js --output _worker.js \
+          commit_message: -简洁真实\
+          commit_author: -控制-流程-扁平化假\
+          push_options: '--set-upstream'
